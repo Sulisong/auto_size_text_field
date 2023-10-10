@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _textEditingControllerFour = TextEditingController();
     _textEditingControllerFive = TextEditingController();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -99,12 +99,20 @@ class _MyHomePageState extends State<MyHomePage> {
               Text(
                 'Fixed width (full width of parent\'s BoxConstraints)',
               ),
-              Padding(
+              Container(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: AutoSizeTextField(
+                height: 50,
+                width: 400,
+                child: AutoSizeTextFormField(
                   controller: _textEditingControllerOne,
-                  minFontSize: 24,
-                  style: TextStyle(fontSize: 64),
+                  style: TextStyle(fontSize: 30),
+                  minFontSize: 1,
+                  maxLines: 1,
+                  overflowReplacement: Text('...'),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    isDense: true,
+                  ),
                 ),
               ),
               SizedBox(
@@ -138,7 +146,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               SizedBox(height: 48),
-
               Text('Auto adjusted width with prefix and suffix text'),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -179,8 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         isDense: true,
-                        contentPadding: const EdgeInsets.all(20)
-                    ),
+                        contentPadding: const EdgeInsets.all(20)),
                     keyboardType: TextInputType.multiline,
                   ),
                 ),
