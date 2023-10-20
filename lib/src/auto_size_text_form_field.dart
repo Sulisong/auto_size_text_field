@@ -560,12 +560,17 @@ class _AutoSizeTextFormFieldState extends State<AutoSizeTextFormField> {
   }
 
   Widget _buildTextField(double fontSize, TextStyle style, int? maxLines) {
+    // 针对自己业务适配
+    var lins = widget.maxLines ?? 1;
+    if (widget?.enabled == true) lins--;
     return Container(
       width: widget.fullwidth
           ? double.infinity
-          : math.max(fontSize,
-              _textSpanWidth * MediaQuery.of(context).textScaleFactor),
-      height: widget.textAlign == TextAlign.center ? fontSize : null,
+          : math.max(
+              fontSize,
+              _textSpanWidth * MediaQuery.of(context).textScaleFactor,
+            ),
+      height: widget.textAlign == TextAlign.center ? fontSize * lins : null,
       child: TextFormField(
         key: widget.textFieldKey,
         autovalidateMode: widget.autovalidateMode,
